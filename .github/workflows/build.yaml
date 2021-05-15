@@ -1,5 +1,5 @@
 
-name: personal-toolbox
+name: build and publish
 on: push
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       id: build-image
       uses: redhat-actions/buildah-build@v2.5
       with:
-        image: teamred-miner
+        image: teamredminer
         tags: ${{ env.SHORT_SHA }} ${{ env.SNAPSHOT }} latest
         oci: true
         layers: true
