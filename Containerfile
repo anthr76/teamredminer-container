@@ -47,3 +47,5 @@ USER miner
 WORKDIR /teamredminer
 VOLUME [ "/teamredminer" ]
 ENTRYPOINT ["./teamredminer"]
+
+LABEL org.opencontainers.image.source = "https://github.com/anthr76/teamredminer-container"
