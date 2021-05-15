@@ -34,7 +34,7 @@ jobs:
         tags:  ${{ steps.build-image.outputs.tags }}
         registry: ghcr.io/${{ github.actor }}
         username: ${{ github.actor }}
-        password: ${{ secrets.CR_TOKEN }}
+        password: ${{ secrets.CR_PAT_MINE }}
 
     - name: Use the image
       run: echo "New image has been pushed to ${{ steps.push-to-ghcr.outputs.registry-paths }}"
