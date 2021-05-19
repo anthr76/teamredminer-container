@@ -1,6 +1,10 @@
 
 name: build and publish
 on: push
+    paths:
+      - 'Containerfile'
+      - 'sudoers'
+      - '.github/workflows/build.yaml'
 
 jobs:
   build:
@@ -15,12 +19,18 @@ jobs:
     - name: Get Git short Hash
       run: echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
 
+    - name: Get Upstream Tag
+      run: echo "UPSTREAM_TAG=$(grep 'FROM' < ./Containerfile | sed -e 's#FROM docker.io/library/archlinux\:##g' -e 's#base.##g')" >> $GITHUB_ENV
+
+    - name: Get TeamRedMiner version
+      run: echo "TRM_REL=$(grep 'ENV' < ./Containerfile | sed -e 's#ENV TRM_VERSION\=##g' -e 's###g')" >> $GITHUB_ENV
+
     - name: Build Image
       id: build-image
       uses: redhat-actions/buildah-build@v2.5.1
       with:
         image: teamredminer
-        tags: ${{ env.SHORT_SHA }} latest
+        tags: ${{ env.SHORT_SHA }} latest ${{ env.UPSTREAM_TAG }} ${{ env.TRM_REL }}
         oci: true
         layers: true
         dockerfiles:

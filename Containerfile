@@ -1,6 +1,7 @@
-FROM docker.io/archlinux:base-devel-20210509.0.21942
+FROM docker.io/library/archlinux:base-20210509.0.21942
 
-ENV TRM_VERSION=0.8.3
+ # renovate: datasource=github-releases depName=todxx/teamredminer
+ENV TRM_VERSION=v0.8.3
 
 RUN pacman -Syu --noconfirm --needed base base-devel git asp && \
     useradd -d /home/makepkg makepkg && \
@@ -25,9 +26,9 @@ RUN git clone https://aur.archlinux.org/opencl-amd.git/ && \
     cd .. && \
     rm -rf /opencl-amd
 
-RUN curl -L https://github.com/todxx/teamredminer/releases/download/v"${TRM_VERSION}"/teamredminer-v"${TRM_VERSION}"-linux.tgz | tar xvz && \
-    mv /teamredminer-v"${TRM_VERSION}"-linux/* /teamredminer  && \
-    rm -rf teamredminer-v"${TRM_VERSION}"-linux
+RUN curl -L https://github.com/todxx/teamredminer/releases/download/"${TRM_VERSION}"/teamredminer-"${TRM_VERSION}"-linux.tgz | tar xvz && \
+    mv /teamredminer-"${TRM_VERSION}"-linux/* /teamredminer  && \
+    rm -rf teamredminer-"${TRM_VERSION}"-linux
 
 RUN \
   useradd miner \
