@@ -1,6 +1,7 @@
 
 name: build and publish
-on: push
+on:
+  push:
     paths:
       - 'Containerfile'
       - 'sudoers'
