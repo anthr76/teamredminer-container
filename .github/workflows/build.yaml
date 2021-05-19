@@ -2,8 +2,8 @@
 name: build and publish
 on:
   push:
-    branches:
-      - !main
+    branches-ignore:
+      - main
     paths:
       - 'Containerfile'
       - 'sudoers'
