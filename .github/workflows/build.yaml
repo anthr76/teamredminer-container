@@ -7,7 +7,7 @@ on:
     paths:
       - 'Containerfile'
       - 'sudoers'
-      - '.github/workflows/build-and-push.yaml'
+      - '.github/workflows/build.yaml'
 
 jobs:
   build:
@@ -38,16 +38,4 @@ jobs:
         layers: true
         dockerfiles:
           ./Containerfile
-    
-    - name: Push to GHCR
-      id: push-to-ghcr
-      uses: redhat-actions/push-to-registry@v2.3.1
-      with:
-        image: ${{ steps.build-image.outputs.image }}
-        tags:  ${{ steps.build-image.outputs.tags }}
-        registry: ghcr.io/${{ github.actor }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.CR_PAT_MINE }}
 
-    - name: Use the image
-      run: echo "New image has been pushed to ${{ steps.push-to-ghcr.outputs.registry-paths }}"
