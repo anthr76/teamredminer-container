@@ -1,6 +1,6 @@
 FROM docker.io/library/archlinux:base-20210509.0.21942
 
- # renovate: datasource=github-releases depName=todxx/teamredminer
+# renovate: datasource=github-releases depName=todxx/teamredminer
 ENV TRM_VERSION=v0.8.3
 
 RUN pacman -Syu --noconfirm --needed base base-devel git asp && \
