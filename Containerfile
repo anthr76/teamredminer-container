@@ -1,4 +1,4 @@
-FROM docker.io/library/archlinux@sha256:35fc5090fb0be52698eeb31202c4073746b2977a5f169722dd54c9914b1f38f4
+FROM docker.io/library/archlinux@sha256:920beffbba3ad20ee304bc938446cadbde4d308650e9d5a5a9b6db5262ad20fe
 
 # renovate: datasource=github-releases depName=todxx/teamredminer
 ENV TRM_VERSION=v0.8.3
