@@ -1,8 +1,29 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "dockerfile": {
-    "fileMatch": ['(^|/|\\.)Containerfile$', '(^|/)Containerfile\\.[^/]*$']
+{
+  "enabled": true,
+  "timezone": "America/New_York",
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "commitBody": "Signed-off-by: Anthony Rabbito <hello@anthonyrabbito.com>",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "commitMessageSuffix": "",
+  "docker": {
+    "fileMatch": ["Containerfile"]
   }
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "Containerfile",
+        "hack/.+\\.sh$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?_VERSION=(?<currentValue>.*)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
 }
