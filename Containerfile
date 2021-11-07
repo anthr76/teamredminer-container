@@ -1,7 +1,7 @@
 FROM docker.io/library/archlinux@sha256:920beffbba3ad20ee304bc938446cadbde4d308650e9d5a5a9b6db5262ad20fe
 
 # renovate: datasource=github-releases depName=todxx/teamredminer
-ENV TRM_VERSION=v0.8.3
+ENV TRM_VERSION=v0.8.6.3
 
 RUN pacman -Syu --noconfirm --needed base base-devel git asp && \
     useradd -d /home/makepkg makepkg && \
